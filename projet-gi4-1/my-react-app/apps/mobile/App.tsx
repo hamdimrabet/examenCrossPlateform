@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeComponent from "./screen/WelcomeComponent";
 import HomeScreen from "./screen/HomeScreen";
+import HomeScreenTrending from "./screen/HomeScreentrending";
 import PlaylistScreen from "./screen/PlaylistScreen";
 import ArtisteScreen from "./screen/ArtisteScreen";
 import SplashScreen from './screen/SplachScreen';
@@ -36,7 +37,7 @@ const App = () => {
         
           <Stack.Screen name="Welcome" component={WelcomeComponent}></Stack.Screen>
           <Stack.Screen name="Profile" component={ProfilePage}></Stack.Screen>
-          <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+          <Stack.Screen name="Home" component={HomeScreenTrending}></Stack.Screen>
           <Stack.Screen name="Playlist" component={PlaylistScreen}></Stack.Screen>
           <Stack.Screen name="Artiste" component={ArtisteScreen}></Stack.Screen>
         </Stack.Navigator>

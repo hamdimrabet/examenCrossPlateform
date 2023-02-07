@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity ,Image} from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { UpNextButton, RoundButtonMusic, Cover  } from '@my-workspace/my-ui'
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { UpNextButton, RoundButtonMusic, Cover } from '@my-workspace/my-ui'
+import { AntDesign, Feather,Entypo,Ionicons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { FontAwesome } from '@expo/vector-icons';
 
 
 import { Video, AVPlaybackStatus } from 'expo-av';
 
-const HomeScreentrending = ({ navigation, route }) => {
+const HomeScreenTrending = ({ navigation, route }) => {
     console.log(route)
     const video = React.useRef(null);
 
@@ -78,8 +78,8 @@ const HomeScreentrending = ({ navigation, route }) => {
     }, [isPlaying])
 
     return (
-        <View style={{ flex: 1, width: 350, backgroundColor: "#1F1D2B", justifyContent: 'center', alignItems: 'center' }}>
-            <Text></Text>
+        <View style={{ flex: 1, width: 350, backgroundColor: "#ff005c", justifyContent: 'center', alignItems: 'center',borderRadius: 15 }}>
+            
 
             <Video
                 ref={video}
@@ -87,7 +87,7 @@ const HomeScreentrending = ({ navigation, route }) => {
                     uri: dataPlayer.urlMp4,
                 }}
                 useNativeControls
-                resizeMode="content"
+                
                 isLooping
             />
 
@@ -103,11 +103,17 @@ const HomeScreentrending = ({ navigation, route }) => {
             </View>
             <View style={{ flex: 4 }}>
 
-
-                <Cover
-                    borderRadius={100}
+            <View style={styles.avatarContainer}>
+        <Image
+          source={{ uri: dataPlayer.poster }}
+          style={styles.avatar}
+        />
+        </View>
+                {/* <Cover
+                    borderRadius={200}
+                    size ={250}
                     imageUrl={dataPlayer.poster}
-                />
+                /> */}
 
 
             </View>
@@ -133,30 +139,30 @@ const HomeScreentrending = ({ navigation, route }) => {
             </View>
             <View style={{ flex: 1, flexDirection: "row", alignItems: 'center', justifyContent: 'center' }}>
                 <RoundButtonMusic
-                    backgroundColor="blue"
+                    backgroundColor="balck"
                     icon={<Feather name="chevrons-left" size={24} color="white" />}
                     onClickButton={() => { setCurrentDuration(oldValue => oldValue - 10) }}
                     size={50}
                 />
 
                 <RoundButtonMusic
-                    backgroundColor="blue"
+                   
                     icon={<Feather name="chevron-left" size={24} color="white" />}
                     onClickButton={() => { setCurrentDuration(oldValue => oldValue - 2) }}
                     size={50}
                 /> <RoundButtonMusic
-                    backgroundColor="blue"
+                   
                     icon={isPlaying ? <FontAwesome name="pause" size={24} color="white" /> : <FontAwesome name="play" size={24} color="white" />}
                     onClickButton={() => { handlePlay(!isPlaying) }}
                     size={50}
                 /> <RoundButtonMusic
-                    backgroundColor="blue"
+                    
                     icon={<Feather name="chevron-right" size={24} color="white" />}
                     onClickButton={() => { setCurrentDuration(oldValue => oldValue + 2) }}
 
                     size={50}
                 /> <RoundButtonMusic
-                    backgroundColor="blue"
+                   
                     icon={<Feather name="chevrons-right" size={24} color="white" />}
                     onClickButton={() => { setCurrentDuration(oldValue => oldValue + 10) }}
 
@@ -164,29 +170,61 @@ const HomeScreentrending = ({ navigation, route }) => {
                 />
 
             </View>
-            <View style={{ flex: 2 }}></View>
-            <View style={{ flex: 1 }}>
+          
+            
+<View style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end'}}>
 
-                <UpNextButton
-                    backgroundColor="red"
-                    borderRadius="10"
-                    text="Hello"
-                    textColor="#FFFF00"
-                    type="button"
-                />
-                <UpNextButton
-                    backgroundColor="red"
-                    borderRadius="10"
-                    text="Hello"
-                    textColor="#562c2c"
-                    type="link"
-                /></View>
+<View style={{marginRight: 50}}>
+<TouchableOpacity
+    onPress={() => navigation.navigate('Welcome')}
+>
+    <Entypo name="home" size={24} color="white"/>
+    <Text style={{color: 'white', fontSize: 8, fontWeight: 'bold'}}>Home</Text>
+</TouchableOpacity>
+</View>
+<View style={{width: 20}}/>
 
-            <Text>HomeScreentrending</Text>
+<View style={{marginRight: 50}}>
+<TouchableOpacity
+    onPress={() => navigation.navigate('Artiste')}
+>
+    <Entypo name="folder-video" size={24} color="white"/>
+    <Text style={{color: 'white', fontSize: 8, fontWeight: 'bold'}}>Artiste</Text>
+</TouchableOpacity>
+</View>
+
+<View style={{width: 20}}/>
+
+<View style={{marginRight: 50}}>
+<TouchableOpacity
+    onPress={() => navigation.navigate('Profile')}
+>
+    <Ionicons name="md-person-sharp" size={24} color="white"/>
+    <Text style={{color: 'white', fontSize: 8, fontWeight: 'bold'}}>Profile</Text>
+</TouchableOpacity>
+</View>
+</View>
         </View>
     )
 }
 
-export default HomeScreentrending
+export default HomeScreenTrending;
 
-const styles = StyleSheet.create({})
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 16,
+  },
+  avatarContainer: {
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  avatar: {
+    width: 250,
+    height: 250,
+    borderRadius: 150,
+    marginBottom: 16,
+  },
+});
